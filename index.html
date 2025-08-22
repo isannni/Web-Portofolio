@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio with Sidebar & Typing Effect</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Toggle Light/Dark -->
+  <div class="theme-toggle">
+    <label class="switch">
+      <input type="checkbox" id="toggleMode">
+      <span class="slider"></span>
+    </label>
+    <span id="modeText">Dark</span>
+  </div>
+
+  <div class="container">
+    <!-- Sidebar Profile -->
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="img/profile.jpg" alt="Profile">
+        <h2><span>Akhmad Ru'yatul Ikhsani</span></h2>
+        <p>I’m a passionate front-end web developer who excels at creating pixel-perfect web interfaces. I’m available for a freelance job.  
+          <a href="#">Hire me</a>
+        </p>
+      </div>
+
+      <div class="contact-info">
+        <p>📍 Indonesia</p>
+        <p>📞 (0882007037280)</p>
+        <p>📧 ikhsaniahmad61@gmail.com</p>
+      </div>
+
+      <div class="social">
+        <a href="#">🌐</a>
+        <a href="#">🐦</a>
+        <a href="#">📸</a>
+        <a href="#">🎥</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content">
+        <h1>Hello! I’m a</h1>
+        <h2><span id="typing"></span><span class="cursor">|</span></h2>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
