@@ -1,227 +1,321 @@
-/* Reset */
+/* --- 1. Global Reset & Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  body {
-    height: 100vh;
-    display: flex;
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.5s, color 0.5s;
-  }
-  
-  /* Theme Colors */
-  :root {
-    --bg: #0f0f0f;
-    --text: #fff;
-    --accent: #0099ff;
-    --card: #1a1a1a;
-  }
-  
-  .light-mode {
-    --bg: #f4f4f4;
-    --text: #111;
-    --accent: #0066cc;
-    --card: #fff;
-  }
-  
-  /* Container Layout */
-  .container {
-    display: flex;
-    width: 100%;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    width: 280px;
-    background: var(--card);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .profile {
-    text-align: center;
-  }
-  
-  .profile img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid var(--accent);
-    margin-bottom: 10px;
-  }
-  
-  .profile h2 {
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  
-  .profile h2 span {
-    color: var(--accent);
-  }
-  
-  .profile p {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-  
-  .profile a {
-    color: var(--accent);
-    text-decoration: underline;
-  }
-  
-  /* Contact Info */
-  .contact-info p {
-    background: var(--bg);
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-  }
-  
-  /* Social Icons */
-  .social {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  .social a {
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: 0.3s;
-  }
-  
-  .social a:hover {
-    color: var(--accent);
-  }
-  
-  /* Main Content */
-  .main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .content {
-    text-align: center;
-  }
-  
-  .content h1 {
-    font-size: 2rem;
-  }
-  
-  .content h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--accent);
-    margin-top: 10px;
-  }
-  
-  /* Typing Cursor */
-  .cursor {
-    display: inline-block;
-    margin-left: 2px;
-    width: 2px;
-    background: var(--text);
-    animation: blink 0.7s infinite;
-  }
-  
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-  
-  /* Toggle Theme Switch */
-  .theme-toggle {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 1000;
-    color: var(--text);
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-  }
-  
-  .switch input { display: none; }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: var(--accent);
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
-  /* Animasi masuk */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- 2. CSS Variables (Themes) --- */
+:root {
+  /* Dark Theme */
+  --bg-color-dark: #0f0f0f;
+  --text-color-light: #fff;
+  --sidebar-bg: #1a1a1a;
+  --card-bg: #1a1a1a;
+
+  /* Warna Aksen */
+  --accent-color: #ff5722; /* Oranye Terang */
+  --accent-secondary: #00bcd4; /* Biru Cyan */
+
+  /* Tipografi */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+body.light-mode {
+  /* Light Theme */
+  --bg-color-dark: #f4f4f4;
+  --text-color-light: #111;
+  --sidebar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --accent-color: #0066cc; /* Aksen biru untuk mode terang */
+  --accent-secondary: #00bcd4;
+}
+
+/* --- 3. Base Styles & General Layout --- */
+body {
+  height: 100vh;
+  display: flex;
+  background: var(--bg-color-dark);
+  color: var(--text-color-light);
+  font-family: var(--font-body);
+  transition: background 0.5s, color 0.5s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-color-light);
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* --- 4. Sidebar Styles --- */
+.sidebar {
+  width: 280px;
+  background: var(--sidebar-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideInLeft 1s ease forwards;
+}
+
+.profile {
+  text-align: center;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.profile h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.profile h2 span {
+  color: var(--accent-color);
+}
+
+.profile p {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+}
+
+.profile a {
+  text-decoration: underline;
+}
+
+.contact-info p {
+  background: var(--bg-color-dark);
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--text-color-light);
+  transition: 0.3s;
+}
+
+.social a:hover {
+  color: var(--accent-color);
+}
+
+/* --- 5. Main Content & Typing Animation --- */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Mengubah flex-direction untuk menampung bagian proyek */
+  justify-content: flex-start; /* Menyesuaikan konten ke atas */
+  align-items: center;
+  padding: 50px 20px; /* Menambahkan padding untuk ruang */
+  animation: slideInRight 1s ease forwards;
+}
+
+.content {
+  text-align: center;
+  margin-bottom: 50px; /* Jarak antara header dan bagian proyek */
+}
+
+.content h1 {
+  font-size: 2rem;
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin-top: 10px;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  width: 2px;
+  background: var(--text-color-light);
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* --- 6. Project Section Styles --- */
+#projects {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+#projects h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: var(--accent-color);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.project-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-size: 1.5em;
+  margin: 15px 0 10px;
+}
+
+.project-card p {
+  padding: 0 20px 15px;
+  font-size: 0.9em;
+  color: var(--text-color-light);
+}
+
+.project-links a {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--bg-color-dark);
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin: 0 5px 15px;
+  font-weight: bold;
+}
+
+.project-links a:hover {
+  background-color: var(--accent-secondary);
+  color: var(--bg-color-dark);
+}
+
+/* --- 7. Theme Toggle & Animation --- */
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  color: var(--text-color-light);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input { display: none; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Animasi masuk */
 @keyframes slideInLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
   }
-  
-  @keyframes slideInRight {
-    0% {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  /* Terapkan ke elemen */
-  .sidebar {
-    animation: slideInLeft 1s ease forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
   }
-  
-  .main-content {
-    animation: slideInRight 1s ease forwards;
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
+}
+
+.sidebar {
+  animation: slideInLeft 1s ease forwards;
+}
+
+.main-content {
+  animation: slideInRight 1s ease forwards;
+}
